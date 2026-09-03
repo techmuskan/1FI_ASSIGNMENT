@@ -1,4 +1,4 @@
-# 1Fi — SDE-1 Full Stack Assignment
+# 1Fi - SDE-1 Full Stack Assignment
 
 A simple full-stack catalog for smartphones with multiple EMI plans. Product details, variants, prices, images, and EMI data all come from a Node/Express API backed by MongoDB. The React frontend fetches that data and never hardcodes catalog content.
 
