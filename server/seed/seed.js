@@ -119,7 +119,7 @@ const products = [
         images: [
           "https://sota.store/image/cache/catalog/Samsung-3/samsung-s24-ultra-s928-blk-05-1600x1600.webp",
           "https://www.imobily.eu/image/cache/catalog/samsung/GalaxyS24Ultra/TitaniumBlack/8-800x800.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Back_view_of_Samsung_Galaxy_S24_Ultra_Black.jpg"
+          "https://upload.wikimedia.org/wikipedia/commons/3/3b/https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70.jpg"
         ],
         mrp: 134999,
         price: 124999,
