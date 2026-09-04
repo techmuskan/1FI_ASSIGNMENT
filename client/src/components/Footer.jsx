@@ -5,8 +5,7 @@ export default function Footer() {
         <div>
           <p className="text-lg font-semibold">1Fi</p>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Buy smartphones on EMI plans backed by mutual funds. Sample catalog for
-            the SDE-1 full-stack assignment.
+            Buy smartphones on EMI plans backed by mutual funds.
           </p>
         </div>
         <div>
