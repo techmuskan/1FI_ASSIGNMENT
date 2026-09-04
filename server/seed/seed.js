@@ -63,36 +63,46 @@ const products = [
         color: "Silver",
         colorHex: "#C0C7D1",
         storage: "256 GB",
-        image:
-          "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1200&q=80",
+        images: [
+          "https://inspireonline.in/cdn/shop/files/IMG-18071497_m_jpeg_1_65079243-8ab3-474a-a5a8-86452ae7a2d3.jpg?v=1757449924&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071498_m_jpeg_1_63e6a18e-608b-4d05-82cc-7fb71cf28928.jpg?v=1757449923&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071499_m_jpeg_1_b29ef5ac-0f4e-4e08-bfd5-e7496b9ee673.jpg?v=1757449924&width=823"
+        ],
         mrp: 149900,
         price: 139900,
         emiPlans: buildPlans(139900),
       },
       {
-        variantId: "black-512",
-        color: "Black",
+        variantId: "deep-blue-512",
+        color: "Deep Blue",
         colorHex: "#1F2937",
         storage: "512 GB",
-        image:
-          "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80",
+        images: [
+          "https://inspireonline.in/cdn/shop/files/IMG-18071457_m_jpeg_1_e2d54f32-8e46-41f0-81a3-d6711cd2fc4b.jpg?v=1757450002&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071458_m_jpeg_1_8a239aca-d06c-489c-b199-d4997339a4c0.jpg?v=1757450001&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071459_m_jpeg_1_4837a8aa-5a25-4fbf-abdf-7d819976af61.jpg?v=1757450002&width=823"
+        ],
         mrp: 179900,
         price: 169900,
         emiPlans: buildPlans(169900),
       },
       {
-        variantId: "black-512",
-        color: "Black",
+        variantId: "deep-blue-256",
+        color: "Deep Blue",
         colorHex: "#1F2937",
         storage: "256 GB",
-        image:
-          "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80",
-        mrp: 179900,
-        price: 169900,
-        emiPlans: buildPlans(169900),
+        images: [
+          "https://inspireonline.in/cdn/shop/files/IMG-18071457_m_jpeg_1_e2d54f32-8e46-41f0-81a3-d6711cd2fc4b.jpg?v=1757450002&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071458_m_jpeg_1_8a239aca-d06c-489c-b199-d4997339a4c0.jpg?v=1757450001&width=823",
+          "https://inspireonline.in/cdn/shop/files/IMG-18071459_m_jpeg_1_4837a8aa-5a25-4fbf-abdf-7d819976af61.jpg?v=1757450002&width=823"
+        ],
+        mrp: 159900,
+        price: 149900,
+        emiPlans: buildPlans(149900),
       },
     ],
   },
+
   {
     name: "Samsung Galaxy S24 Ultra",
     slug: "samsung-galaxy-s24-ultra",
@@ -106,8 +116,11 @@ const products = [
         color: "Titanium Black",
         colorHex: "#111827",
         storage: "256 GB",
-        image:
-          "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=1200&q=80",
+        images: [
+          "https://sota.store/image/cache/catalog/Samsung-3/samsung-s24-ultra-s928-blk-05-1600x1600.webp",
+          "https://www.imobily.eu/image/cache/catalog/samsung/GalaxyS24Ultra/TitaniumBlack/8-800x800.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/3/3b/Back_view_of_Samsung_Galaxy_S24_Ultra_Black.jpg"
+        ],
         mrp: 134999,
         price: 124999,
         emiPlans: buildPlans(124999),
@@ -117,14 +130,18 @@ const products = [
         color: "Titanium Gray",
         colorHex: "#6B7280",
         storage: "512 GB",
-        image:
-          "https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?auto=format&fit=crop&w=1200&q=80",
+        images: [
+          "https://www.pbtech.co.nz/imgprod/M/P/MPHSAM0092801__2.jpg",
+          "https://www.telstra.com.au/content/dam/tcom/devices/mobile/mhdwhst-s24u/titaniumgrey/samsung-galaxyS24Ultra-titaniumGrey-07-900x1200.jpg",
+          "https://st.bigc-cs.com/cdn-cgi/image/format%3Dwebp%2Cquality%3D90/public/media/catalog/product/61/20/2000008016261/2000008016261_4-20251117134731-.jpg"
+        ],
         mrp: 154999,
         price: 144999,
         emiPlans: buildPlans(144999),
       },
     ],
   },
+
   {
     name: "Google Pixel 9 Pro",
     slug: "google-pixel-9",
@@ -138,30 +155,39 @@ const products = [
         color: "Obsidian",
         colorHex: "#0B0F19",
         storage: "256 GB",
-        image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjdoM9PX_KF99LgsbodFWVXXUPKDs4nmhZhSyBgCw1ufQIJllboJY4WRU&s=10",
+        images: [
+          "https://rukminim2.flixcart.com/image/1536/1536/xif0q/mobile/w/f/n/-original-imahggeukc7vp7d6.jpeg?q=90",
+          "https://assets.products-live.ao.com/Images/1a2a3a3c-7910-4c30-851d-fb4be00b3cfa/1280x1280/Google_Pixel9Pro_Obsidian_02.jpg",
+          "https://swipe.ua/content/images/35/1030x1030l80bl0/google-pixel-9-pro-16-128gb-obsidian-59593675209192.png"
+        ],
         mrp: 109999,
         price: 99999,
         emiPlans: buildPlans(99999),
       },
       {
-        variantId: "obsidian-256",
+        variantId: "obsidian-512",
         color: "Obsidian",
         colorHex: "#0B0F19",
         storage: "512 GB",
-        image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjdoM9PX_KF99LgsbodFWVXXUPKDs4nmhZhSyBgCw1ufQIJllboJY4WRU&s=10",
-        mrp: 109999,
-        price: 99999,
-        emiPlans: buildPlans(99999),
+        images: [
+          "https://rukminim2.flixcart.com/image/1536/1536/xif0q/mobile/w/f/n/-original-imahggeukc7vp7d6.jpeg?q=90",
+          "https://assets.products-live.ao.com/Images/1a2a3a3c-7910-4c30-851d-fb4be00b3cfa/1280x1280/Google_Pixel9Pro_Obsidian_02.jpg",
+          "https://swipe.ua/content/images/35/1030x1030l80bl0/google-pixel-9-pro-16-128gb-obsidian-59593675209192.png"
+        ],
+        mrp: 119999,
+        price: 109999,
+        emiPlans: buildPlans(109999),
       },
       {
         variantId: "hazel-512",
         color: "Hazel",
         colorHex: "#A8A29E",
         storage: "512 GB",
-        image:
-          "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80",
+        images: [
+          "https://www.shopaholic.pk/cdn/shop/files/9-pro-hazel-front.jpg?v=1744364434",
+          "https://ibrat.ru/upload/iblock/ae9/7nw9ne67ptyv5m1c6skd1ipplc6ath0n.png",
+          "https://ibrat.ru/upload/iblock/e08/t105djrij75ftvb9jjazrxbzz6izcfnn.png"
+        ],
         mrp: 129999,
         price: 119999,
         emiPlans: buildPlans(119999),

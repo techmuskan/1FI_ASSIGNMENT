@@ -18,7 +18,11 @@ const variantSchema = new mongoose.Schema(
     color: { type: String, required: true },
     colorHex: { type: String, default: "#111827" },
     storage: { type: String, required: true },
-    image: { type: String, required: true },
+    images: {
+      type: [String],
+      required: true,
+      validate: [(v) => v.length >= 1, "A variant must have at least 1 image"],
+    },
     mrp: { type: Number, required: true },
     price: { type: Number, required: true },
     emiPlans: { type: [emiPlanSchema], required: true },

@@ -20,77 +20,80 @@ export default function ProductPage() {
   const [ctaMessage, setCtaMessage] = useState("");
   const [showConfirm, setShowConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
-function load() {
-  setLoading(true);
-  setError("");
-  setPlanId("");
-  setCtaMessage("");
-  setShowConfirm(false);
+  function load() {
+    setLoading(true);
+    setError("");
+    setPlanId("");
+    setCtaMessage("");
+    setShowConfirm(false);
+    setSelectedImage(0);
 
-  getProductBySlug(slug)
-    .then((response) => {
-      const data = response.data;
-      setProduct(data);
-      setSelectedColor(data.variants?.[0]?.color || "");
-      setSelectedStorage(data.variants?.[0]?.storage || "");
-    })
-    .catch((err) => setError(err.message))
-    .finally(() => setLoading(false));
-}
+    getProductBySlug(slug)
+      .then((response) => {
+        const data = response.data;
+        setProduct(data);
+        setSelectedColor(data.variants?.[0]?.color || "");
+        setSelectedStorage(data.variants?.[0]?.storage || "");
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }
 
   useEffect(() => {
     load();
   }, [slug]);
 
   const variant = useMemo(
-  () =>
-    product?.variants.find(
-      (item) =>
-        item.color === selectedColor &&
-        item.storage === selectedStorage
-    ),
-  [product, selectedColor, selectedStorage]
-);
+    () =>
+      product?.variants.find(
+        (item) =>
+          item.color === selectedColor && item.storage === selectedStorage,
+      ),
+    [product, selectedColor, selectedStorage],
+  );
 
   const selectedPlan = variant?.emiPlans.find((plan) => plan.planId === planId);
 
   const colors = useMemo(
     () => [...new Set(product?.variants.map((item) => item.color) || [])],
-    [product]
+    [product],
   );
 
   const storages = useMemo(
     () => [...new Set(product?.variants.map((item) => item.storage) || [])],
-    [product]
+    [product],
   );
 
-function handleColorChange(color) {
-  const matchingVariants = product.variants.filter(
-    (item) => item.color === color
-  );
+  function handleColorChange(color) {
+    const matchingVariants = product.variants.filter(
+      (item) => item.color === color,
+    );
 
-  const storageAvailable = matchingVariants.some(
-    (item) => item.storage === selectedStorage
-  );
+    const storageAvailable = matchingVariants.some(
+      (item) => item.storage === selectedStorage,
+    );
 
-  setSelectedColor(color);
+    setSelectedColor(color);
 
-  if (!storageAvailable) {
-    setSelectedStorage(matchingVariants[0]?.storage || "");
+    if (!storageAvailable) {
+      setSelectedStorage(matchingVariants[0]?.storage || "");
+    }
+
+    setPlanId("");
+    setCtaMessage("");
+    setShowConfirm(false);
+    setSelectedImage(0);
   }
 
-  setPlanId("");
-  setCtaMessage("");
-  setShowConfirm(false);
-}
-
-function handleStorageChange(storage) {
-  setSelectedStorage(storage);
-  setPlanId("");
-  setCtaMessage("");
-  setShowConfirm(false);
-}
+  function handleStorageChange(storage) {
+    setSelectedStorage(storage);
+    setPlanId("");
+    setCtaMessage("");
+    setShowConfirm(false);
+    setSelectedImage(0);
+  }
 
   async function handleProceed() {
     if (!variant || !selectedPlan) {
@@ -140,18 +143,81 @@ function handleStorageChange(storage) {
       </p>
 
       <section className="mt-6 grid gap-10 lg:grid-cols-2">
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
-          <img
-            src={variant.image}
-            alt={`${product.name} ${variant.color} ${variant.storage}`}
-            className="h-[420px] w-full object-contain"
-          />
+        <div>
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+            <img
+              src={variant.images?.[selectedImage] || variant.image}
+              alt={`${product.name} ${variant.color} ${variant.storage} view ${selectedImage + 1}`}
+              className="h-[420px] w-full object-contain"
+            />
+
+            {variant.images?.length > 1 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelectedImage(
+                      selectedImage === 0
+                        ? variant.images.length - 1
+                        : selectedImage - 1,
+                    )
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-slate-200 bg-white/90 px-3 py-2 text-lg shadow-sm hover:bg-white"
+                  aria-label="Previous image"
+                >
+                  ←
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelectedImage(
+                      selectedImage === variant.images.length - 1
+                        ? 0
+                        : selectedImage + 1,
+                    )
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-slate-200 bg-white/90 px-3 py-2 text-lg shadow-sm hover:bg-white"
+                  aria-label="Next image"
+                >
+                  →
+                </button>
+              </>
+            ) : null}
+          </div>
+
+          {variant.images?.length > 1 ? (
+            <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
+              {variant.images.map((image, index) => (
+                <button
+                  key={`${image}-${index}`}
+                  type="button"
+                  onClick={() => setSelectedImage(index)}
+                  className={`h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-white ${
+                    selectedImage === index
+                      ? "border-brand-600"
+                      : "border-slate-200"
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`${product.name} thumbnail ${index + 1}`}
+                    className="h-full w-full object-contain"
+                  />
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         <div>
           <p className="text-sm font-medium text-brand-700">{product.brand}</p>
-          <h1 className="mt-1 text-3xl font-semibold tracking-tight">{product.name}</h1>
-          <p className="mt-3 text-sm leading-6 text-slate-600">{product.description}</p>
+          <h1 className="mt-1 text-3xl font-semibold tracking-tight">
+            {product.name}
+          </h1>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            {product.description}
+          </p>
           <p className="mt-4 text-sm text-slate-700">
             Selected: <span className="font-semibold">{variant.color}</span> /{" "}
             <span className="font-semibold">{variant.storage}</span>
@@ -159,7 +225,9 @@ function handleStorageChange(storage) {
 
           <div className="mt-4 flex flex-wrap items-end gap-3">
             <p className="text-3xl font-semibold">{formatInr(variant.price)}</p>
-            <p className="text-sm text-slate-500 line-through">{formatInr(variant.mrp)}</p>
+            <p className="text-sm text-slate-500 line-through">
+              {formatInr(variant.mrp)}
+            </p>
             {savings > 0 ? (
               <p className="text-sm font-semibold text-brand-700">
                 Save {formatInr(savings)}
@@ -169,14 +237,14 @@ function handleStorageChange(storage) {
 
           <div className="mt-6">
             <VariantSelector
-  colors={colors}
-  storages={storages}
-  selectedColor={selectedColor}
-  selectedStorage={selectedStorage}
-  variants={product.variants}
-  onColorChange={handleColorChange}
-  onStorageChange={handleStorageChange}
-/>
+              colors={colors}
+              storages={storages}
+              selectedColor={selectedColor}
+              selectedStorage={selectedStorage}
+              variants={product.variants}
+              onColorChange={handleColorChange}
+              onStorageChange={handleStorageChange}
+            />
           </div>
         </div>
       </section>

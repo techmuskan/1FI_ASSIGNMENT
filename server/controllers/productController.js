@@ -28,7 +28,7 @@ exports.getProducts = async (_req, res) => {
         brand: product.brand,
         category: product.category,
         startingPrice,
-        image: preview?.image || "",
+        image: preview?.images?.[0] || "",
         variantCount: product.variants.length,
       };
     });
