@@ -8,12 +8,17 @@ export default function VariantSelector({
   variants,
 }) {
   const storageAvailable = (storage) =>
-    variants.some((variant) => variant.color === selectedColor && variant.storage === storage);
+    variants.some(
+      (variant) =>
+        variant.color === selectedColor && variant.storage === storage,
+    );
 
   return (
     <div className="space-y-5">
       <fieldset>
-        <legend className="mb-2 text-sm font-semibold text-slate-900">Colour</legend>
+        <legend className="mb-2 text-sm font-semibold text-slate-900">
+          Colour
+        </legend>
         <div className="flex flex-wrap gap-2">
           {colors.map((color) => {
             const variant = variants.find((item) => item.color === color);
@@ -43,7 +48,9 @@ export default function VariantSelector({
       </fieldset>
 
       <fieldset>
-        <legend className="mb-2 text-sm font-semibold text-slate-900">Storage</legend>
+        <legend className="mb-2 text-sm font-semibold text-slate-900">
+          Storage
+        </legend>
         <div className="flex flex-wrap gap-2">
           {storages.map((storage) => {
             const selected = storage === selectedStorage;
@@ -65,6 +72,9 @@ export default function VariantSelector({
                 }`}
               >
                 {storage}
+                {!available && (
+                  <span className="ml-2 text-xs">Not Available</span>
+                )}
               </button>
             );
           })}

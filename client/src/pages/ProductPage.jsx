@@ -12,7 +12,8 @@ import { formatInr, formatRate } from "../utils/format.js";
 export default function ProductPage() {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
-  const [variantId, setVariantId] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedStorage, setSelectedStorage] = useState("");
   const [planId, setPlanId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -20,29 +21,37 @@ export default function ProductPage() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  function load() {
-    setLoading(true);
-    setError("");
-    setPlanId("");
-    setShowConfirm(false);
-    getProductBySlug(slug)
-      .then((response) => {
-        const data = response.data;
-        setProduct(data);
-        setVariantId(data.variants?.[0]?.variantId || "");
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }
+function load() {
+  setLoading(true);
+  setError("");
+  setPlanId("");
+  setCtaMessage("");
+  setShowConfirm(false);
+
+  getProductBySlug(slug)
+    .then((response) => {
+      const data = response.data;
+      setProduct(data);
+      setSelectedColor(data.variants?.[0]?.color || "");
+      setSelectedStorage(data.variants?.[0]?.storage || "");
+    })
+    .catch((err) => setError(err.message))
+    .finally(() => setLoading(false));
+}
 
   useEffect(() => {
     load();
   }, [slug]);
 
   const variant = useMemo(
-    () => product?.variants.find((item) => item.variantId === variantId),
-    [product, variantId]
-  );
+  () =>
+    product?.variants.find(
+      (item) =>
+        item.color === selectedColor &&
+        item.storage === selectedStorage
+    ),
+  [product, selectedColor, selectedStorage]
+);
 
   const selectedPlan = variant?.emiPlans.find((plan) => plan.planId === planId);
 
@@ -56,18 +65,32 @@ export default function ProductPage() {
     [product]
   );
 
-  function pickVariant(color, storage) {
-    const exact = product.variants.find(
-      (item) => item.color === color && item.storage === storage
-    );
-    const byColor = product.variants.find((item) => item.color === color);
-    const byStorage = product.variants.find((item) => item.storage === storage);
-    const next = exact || byColor || byStorage || product.variants[0];
-    setVariantId(next.variantId);
-    setPlanId("");
-    setCtaMessage("");
-    setShowConfirm(false);
+function handleColorChange(color) {
+  const matchingVariants = product.variants.filter(
+    (item) => item.color === color
+  );
+
+  const storageAvailable = matchingVariants.some(
+    (item) => item.storage === selectedStorage
+  );
+
+  setSelectedColor(color);
+
+  if (!storageAvailable) {
+    setSelectedStorage(matchingVariants[0]?.storage || "");
   }
+
+  setPlanId("");
+  setCtaMessage("");
+  setShowConfirm(false);
+}
+
+function handleStorageChange(storage) {
+  setSelectedStorage(storage);
+  setPlanId("");
+  setCtaMessage("");
+  setShowConfirm(false);
+}
 
   async function handleProceed() {
     if (!variant || !selectedPlan) {
@@ -146,14 +169,14 @@ export default function ProductPage() {
 
           <div className="mt-6">
             <VariantSelector
-              colors={colors}
-              storages={storages}
-              selectedColor={variant.color}
-              selectedStorage={variant.storage}
-              variants={product.variants}
-              onColorChange={(color) => pickVariant(color, variant.storage)}
-              onStorageChange={(storage) => pickVariant(variant.color, storage)}
-            />
+  colors={colors}
+  storages={storages}
+  selectedColor={selectedColor}
+  selectedStorage={selectedStorage}
+  variants={product.variants}
+  onColorChange={handleColorChange}
+  onStorageChange={handleStorageChange}
+/>
           </div>
         </div>
       </section>
