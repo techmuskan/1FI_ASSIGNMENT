@@ -119,7 +119,7 @@ const products = [
         images: [
           "https://sota.store/image/cache/catalog/Samsung-3/samsung-s24-ultra-s928-blk-05-1600x1600.webp",
           "https://www.imobily.eu/image/cache/catalog/samsung/GalaxyS24Ultra/TitaniumBlack/8-800x800.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/3/3b/https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70.jpg"
+          "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70"
         ],
         mrp: 134999,
         price: 124999,
@@ -133,7 +133,7 @@ const products = [
         images: [
           "https://www.pbtech.co.nz/imgprod/M/P/MPHSAM0092801__2.jpg",
           "https://www.telstra.com.au/content/dam/tcom/devices/mobile/mhdwhst-s24u/titaniumgrey/samsung-galaxyS24Ultra-titaniumGrey-07-900x1200.jpg",
-          "https://st.bigc-cs.com/cdn-cgi/image/format%3Dwebp%2Cquality%3D90/public/media/catalog/product/61/20/2000008016261/2000008016261_4-20251117134731-.jpg"
+          "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/j/m/z/-original-imahgfmxumntk7sy.jpeg?q=70"
         ],
         mrp: 154999,
         price: 144999,
