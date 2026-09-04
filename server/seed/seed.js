@@ -80,6 +80,17 @@ const products = [
         price: 169900,
         emiPlans: buildPlans(169900),
       },
+      {
+        variantId: "black-512",
+        color: "Black",
+        colorHex: "#1F2937",
+        storage: "256 GB",
+        image:
+          "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80",
+        mrp: 179900,
+        price: 169900,
+        emiPlans: buildPlans(169900),
+      },
     ],
   },
   {
@@ -127,6 +138,17 @@ const products = [
         color: "Obsidian",
         colorHex: "#0B0F19",
         storage: "256 GB",
+        image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjdoM9PX_KF99LgsbodFWVXXUPKDs4nmhZhSyBgCw1ufQIJllboJY4WRU&s=10",
+        mrp: 109999,
+        price: 99999,
+        emiPlans: buildPlans(99999),
+      },
+      {
+        variantId: "obsidian-256",
+        color: "Obsidian",
+        colorHex: "#0B0F19",
+        storage: "512 GB",
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjdoM9PX_KF99LgsbodFWVXXUPKDs4nmhZhSyBgCw1ufQIJllboJY4WRU&s=10",
         mrp: 109999,
